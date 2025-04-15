@@ -1,0 +1,398 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8" />
+  <title>Modern Physics Midterm Test</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <style>
+    :root {
+      --primary-color: #6366f1;
+      --primary-light: #818cf8;
+      --primary-dark: #4f46e5;
+      --correct-color: #10b981;
+      --wrong-color: #ef4444;
+      --bg-color: #f1f5f9;
+      --card-bg: #ffffff;
+      --text-color: #1e293b;
+      --border-color: #e2e8f0;
+      --hover-color: #f8fafc;
+      --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+      --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+      --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Inter', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+      background-color: var(--bg-color);
+      color: var(--text-color);
+      line-height: 1.6;
+      padding: 0;
+    }
+
+    .container {
+      max-width: 900px;
+      margin: 0 auto;
+      padding: 1.25rem;
+    }
+
+    header {
+      background: linear-gradient(135deg, var(--primary-color) 0%, var(--primary-dark) 100%);
+      color: white;
+      padding: 2.5rem 0;
+      margin-bottom: 2.5rem;
+      box-shadow: var(--shadow-lg);
+      position: relative;
+      overflow: hidden;
+    }
+
+    header::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='100' height='100' viewBox='0 0 100 100'%3E%3Cpath fill='%23ffffff' fill-opacity='0.05' d='M11 18c3.866 0 7-3.134 7-7s-3.134-7-7-7-7 3.134-7 7 3.134 7 7 7zm48 25c3.866 0 7-3.134 7-7s-3.134-7-7-7-7 3.134-7 7 3.134 7 7 7zm-43-7c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zm63 31c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zM34 90c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zm56-76c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zM12 86c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm28-65c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm23-11c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm-6 60c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm29 22c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zM32 63c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm57-13c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm-9-21c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM60 91c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM35 41c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM12 60c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2z'/%3E%3C/svg%3E");
+      z-index: 0;
+    }
+
+    h1 {
+      text-align: center;
+      font-size: 2.5rem;
+      font-weight: 800;
+      position: relative;
+      z-index: 1;
+      letter-spacing: -0.025em;
+      text-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    }
+
+    .question-box {
+      background-color: var(--card-bg);
+      border-radius: 12px;
+      box-shadow: var(--shadow-md);
+      padding: 2rem;
+      margin-bottom: 2rem;
+      transition: all 0.3s ease;
+      border: 1px solid var(--border-color);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .question-box:hover {
+      transform: translateY(-5px);
+      box-shadow: var(--shadow-lg);
+    }
+
+    .question-box::after {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 6px;
+      height: 100%;
+      background: linear-gradient(to bottom, var(--primary-color), var(--primary-light));
+    }
+
+    .question-number {
+      font-size: 0.875rem;
+      text-transform: uppercase;
+      color: var(--primary-color);
+      font-weight: 600;
+      margin-bottom: 0.5rem;
+      letter-spacing: 0.05em;
+    }
+
+    .question-title {
+      font-weight: 700;
+      margin-bottom: 1.5rem;
+      line-height: 1.5;
+      font-size: 1.125rem;
+      color: var(--text-color);
+    }
+
+    .options-container {
+      display: flex;
+      flex-direction: column;
+      gap: 0.75rem;
+    }
+
+    .option-wrapper {
+      position: relative;
+    }
+
+    label {
+      display: flex;
+      align-items: center;
+      padding: 1rem 1.25rem;
+      border-radius: 8px;
+      cursor: pointer;
+      border: 1px solid var(--border-color);
+      transition: all 0.2s ease;
+      font-weight: 500;
+      position: relative;
+      z-index: 1;
+    }
+
+    label:hover {
+      border-color: var(--primary-light);
+      background-color: var(--hover-color);
+    }
+
+    input[type="radio"] {
+      margin-right: 12px;
+      cursor: pointer;
+      width: 20px;
+      height: 20px;
+      accent-color: var(--primary-color);
+    }
+
+    .feedback {
+      font-weight: 600;
+      display: inline-flex;
+      align-items: center;
+      padding: 0.25rem 0.75rem;
+      border-radius: 999px;
+      font-size: 0.875rem;
+      position: absolute;
+      right: 20px;
+      top: 50%;
+      transform: translateY(-50%);
+    }
+
+    .feedback.correct {
+      color: white;
+      background-color: var(--correct-color);
+    }
+
+    .feedback.wrong {
+      color: white;
+      background-color: var(--wrong-color);
+    }
+
+    .feedback:before {
+      margin-right: 5px;
+      font-size: 1rem;
+    }
+
+    .feedback.correct:before {
+      content: "✓";
+    }
+
+    .feedback.wrong:before {
+      content: "✗";
+    }
+
+    button {
+      background: linear-gradient(135deg, var(--primary-color) 0%, var(--primary-dark) 100%);
+      color: white;
+      border: none;
+      padding: 1rem 2rem;
+      font-size: 1.125rem;
+      font-weight: 600;
+      border-radius: 8px;
+      cursor: pointer;
+      display: block;
+      margin: 2.5rem auto;
+      transition: all 0.3s ease;
+      box-shadow: var(--shadow-md);
+      position: relative;
+      overflow: hidden;
+    }
+
+    button:hover {
+      transform: translateY(-3px);
+      box-shadow: var(--shadow-lg);
+    }
+
+    button:active {
+      transform: translateY(0);
+    }
+
+    button::after {
+      content: '';
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      top: 0;
+      left: 0;
+      background-image: linear-gradient(rgba(255, 255, 255, 0.1), rgba(255, 255, 255, 0));
+      transition: opacity 0.3s ease;
+    }
+
+    button:hover::after {
+      opacity: 0.5;
+    }
+
+    .progress-container {
+      width: 100%;
+      height: 8px;
+      background-color: var(--border-color);
+      border-radius: 999px;
+      margin: 2rem 0;
+      overflow: hidden;
+    }
+
+    .progress-bar {
+      height: 100%;
+      background: linear-gradient(90deg, var(--primary-light) 0%, var(--primary-color) 100%);
+      transition: width 0.3s ease;
+      border-radius: 999px;
+      width: 0%;
+    }
+
+    .progress-info {
+      display: flex;
+      justify-content: space-between;
+      font-size: 0.875rem;
+      font-weight: 500;
+      color: #64748b;
+      margin-bottom: 0.5rem;
+    }
+
+    footer {
+      text-align: center;
+      margin-top: 3rem;
+      padding: 2rem 0;
+      color: #64748b;
+      font-size: 0.875rem;
+      border-top: 1px solid var(--border-color);
+      background-color: white;
+    }
+
+    footer p {
+      opacity: 0.8;
+    }
+
+    /* Responsive design */
+    @media (max-width: 768px) {
+      .container {
+        padding: 1rem;
+      }
+      
+      header {
+        padding: 2rem 0;
+      }
+      
+      h1 {
+        font-size: 2rem;
+      }
+      
+      .question-box {
+        padding: 1.5rem;
+      }
+      
+      .feedback {
+        right: 15px;
+      }
+    }
+
+    @media (max-width: 480px) {
+      h1 {
+        font-size: 1.75rem;
+      }
+      
+      .question-title {
+        font-size: 1rem;
+      }
+      
+      label {
+        padding: 0.8rem 1rem;
+        padding-right: 70px; /* Feedback için yer açıyoruz */
+      }
+      
+      button {
+        padding: 0.8rem 1.5rem;
+        font-size: 1rem;
+      }
+      
+      .feedback {
+        right: 10px;
+        padding: 0.2rem 0.5rem;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="container">
+      <h1>Modern Physics Midterm Test</h1>
+    </div>
+  </header>
+  
+  <div class="container">
+    <div class="progress-info">
+      <span id="current-question">Soru 1</span>
+      <span id="question-count">1 / 10</span>
+    </div>
+    <div class="progress-container">
+      <div class="progress-bar" id="progress-bar"></div>
+    </div>
+    
+    <div id="app"></div>
+    <script src="main.js"></script>
+    
+    <script>
+      
+      document.addEventListener('DOMContentLoaded', function() {
+        
+        function initProgressBar() {
+          const questionBoxes = document.querySelectorAll('.question-box');
+          const totalQuestions = questionBoxes.length || 10; // Eğer bulamazsak varsayılan olarak 10 soru
+          
+          updateProgress(1, totalQuestions);
+          
+          document.addEventListener('click', function(e) {
+            if (e.target && e.target.type === 'radio') {
+              const answered = document.querySelectorAll('input[type="radio"]:checked').length;
+              updateProgress(answered, totalQuestions);
+            }
+          });
+          
+          const buttons = document.querySelectorAll('button');
+          buttons.forEach(button => {
+            button.addEventListener('click', function() {
+              setTimeout(() => {
+                const answered = document.querySelectorAll('input[type="radio"]:checked').length;
+                updateProgress(answered, totalQuestions);
+              }, 100);
+            });
+          });
+        }
+        
+        function updateProgress(currentQuestion, totalQuestions) {
+          const progressBar = document.getElementById('progress-bar');
+          const currentQuestionEl = document.getElementById('current-question');
+          const questionCountEl = document.getElementById('question-count');
+          
+          if (progressBar) {
+            const progressPercentage = (currentQuestion / totalQuestions) * 100;
+            progressBar.style.width = `${progressPercentage}%`;
+          }
+          
+          if (currentQuestionEl) {
+            currentQuestionEl.textContent = `Soru ${currentQuestion}`;
+          }
+          
+          if (questionCountEl) {
+            questionCountEl.textContent = `${currentQuestion} / ${totalQuestions}`;
+          }
+        }
+        
+        setTimeout(initProgressBar, 500);
+      });
+    </script>
+  </div>
+  
+  <footer>
+    <div class="container">
+      <p>© 2025 Modern Fizik Testi | Tüm Hakları Saklıdır</p>
+    </div>
+  </footer>
+</body>
+</html>
